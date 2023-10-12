@@ -1,5 +1,3 @@
-Claro, aqui está um exemplo de um README para um projeto Ruby on Rails de um blog que utiliza o Rails 7.0.8 e o Bootstrap para estilização. Este projeto segue o padrão MVC na metodologia CRUD.
-
 # Blog em Ruby on Rails
 
 Este é um projeto de blog desenvolvido em Ruby on Rails, seguindo o padrão MVC (Model-View-Controller) e a metodologia CRUD (Create, Read, Update, Delete). O projeto utiliza a versão 7.0.8 do Ruby on Rails e integra o framework Bootstrap para estilização das páginas.
