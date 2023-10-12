@@ -100,6 +100,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sassc (v2.4.0, asdf: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sassc-rails (v2.1.2, asdf: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v4.13.1, asdf: 3.0.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="simple_form (v5.3.0, asdf: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v4.2.1, asdf: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.4.2, asdf: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.2.2, asdf: 3.0.2) [gem]" level="application" />
@@ -144,6 +145,7 @@
         <option value="scaffold_controller" />
         <option value="scss:assets" />
         <option value="scss:scaffold" />
+        <option value="simple_form:install" />
         <option value="stimulus" />
         <option value="system_test" />
         <option value="task" />
@@ -176,6 +178,7 @@
         <option value="scaffold_controller" />
         <option value="scss:assets" />
         <option value="scss:scaffold" />
+        <option value="simple_form:install" />
         <option value="stimulus" />
         <option value="system_test" />
         <option value="task" />
