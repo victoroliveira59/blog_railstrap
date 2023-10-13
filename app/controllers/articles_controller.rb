@@ -6,16 +6,11 @@ class ArticlesController < ApplicationController
     @highlights = Article.desc_order.first(3)
 
     current_page = (params[:page] || 1).to_i
+    highlights_ids = @highlights.pluck(:id).join(',')
 
-    if @highlights.present?
-      highlights_ids = @highlights.pluck(:id).join(',')
-      @articles = Article.without_highlights(highlights_ids)
-                         .desc_order
-                         .page(current_page)
-    else
-      @articles = Article.desc_order
-                         .page(current_page)
-    end
+    @articles = Article.without_highlights(highlights_ids)
+                       .desc_order
+                       .page(current_page)
   end
 
   def show; end
