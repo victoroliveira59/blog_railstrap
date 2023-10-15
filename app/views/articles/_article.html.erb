@@ -1,0 +1,21 @@
+<article class="blog-post">
+  <h2 class="display-5 link-body-emphasis mb-1"><%= article.title %></h2>
+  <p class="blog-post-meta"><%= creation_date(article.created_at) %><a href="#">Chris</a></p>
+
+
+
+  <p> <%= truncate(article.body, length: 150) %></p>
+
+  <p><%= link_to "Continue reading...", article, class: 'btn btn-link' %></p>
+
+<div class="btn">
+    <%= link_to "Edit", edit_article_path(article), class: "btn btn-primary " %>
+  <div class="btn-group">
+    <%= button_to "Delete", article_path(article),
+                  turbo_method: :delete,
+                  turbo_confirm: 'Você tem certeza?', class: "btn btn-danger ml-2" %>
+  </div>
+</div>
+</article>
+
+
