@@ -32815,3 +32815,58 @@ Processing by ArticlesController#new as HTML
 Completed 200 OK in 8ms (Views: 7.6ms | ActiveRecord: 0.0ms | Allocations: 3191)
 
 
+Started GET "/articles/new" for ::1 at 2023-10-15 16:12:11 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/articles/_form.html.erb:5
+  Rendered articles/_form.html.erb (Duration: 45.9ms | Allocations: 34363)
+  Rendered articles/new.html.erb within layouts/application (Duration: 47.3ms | Allocations: 35035)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.8ms | Allocations: 281)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 254)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 123)
+  Rendered layout layouts/application.html.erb (Duration: 52.4ms | Allocations: 37070)
+Completed 200 OK in 139ms (Views: 52.5ms | ActiveRecord: 7.6ms | Allocations: 95999)
+
+
+Started GET "/articles/new" for ::1 at 2023-10-15 16:21:40 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/articles/_form.html.erb:5
+  Rendered articles/_form.html.erb (Duration: 15.3ms | Allocations: 8124)
+  Rendered articles/new.html.erb within layouts/application (Duration: 16.2ms | Allocations: 8402)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.7ms | Allocations: 340)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 237)
+  Rendered layouts/_footer.html.erb (Duration: 0.8ms | Allocations: 122)
+  Rendered layout layouts/application.html.erb (Duration: 21.0ms | Allocations: 10331)
+Completed 200 OK in 44ms (Views: 22.1ms | ActiveRecord: 6.5ms | Allocations: 19323)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 16:21:41 -0300
+Processing by CategoriesController#index as HTML
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.0ms | Allocations: 3820)
+
+
+  
+NoMethodError (undefined method `sorted' for Category:Class
+Did you mean?  store):
+  
+app/controllers/categories_controller.rb:8:in `index'
+Started GET "/categories" for ::1 at 2023-10-15 16:22:48 -0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 2466)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 92)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 35)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 3758)
+Completed 200 OK in 21ms (Views: 9.7ms | ActiveRecord: 5.8ms | Allocations: 7623)
+
+
