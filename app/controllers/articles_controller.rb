@@ -21,10 +21,14 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @article.save
+        format.html { redirect_to @articles, notice: 'Article was successfully created.' }
+        format.json { render :show, status: :created, location: @articles }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @articles.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -32,25 +36,32 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    if @article.update(article_params)
-      redirect_to @article, notice: 'Article was successfully update.'
-    else
-      render :edit
+    respond_to do |format|
+      if @article.update(article_params)
+        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.json { render :show, status: :ok, location: @article }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @article.destroy
-    redirect_to root_path, status: :see_other, notice: 'Article was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to @article, notice: 'Article was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
+end
 
   private
 
-  def article_params
-    params.require(:article).permit(:title, :body)
-  end
+def article_params
+  params.require(:article).permit(:title, :body, :category_id)
+end
 
-  def set_article
-    @article = Article.find(params[:id])
-  end
+def set_article
+  @article = Article.find(params[:id])
 end
