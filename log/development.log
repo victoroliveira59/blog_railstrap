@@ -34540,3 +34540,1169 @@ Processing by ArticlesController#create as TURBO_STREAM
 Completed 422 Unprocessable Entity in 22ms (Views: 18.4ms | ActiveRecord: 0.4ms | Allocations: 11379)
 
 
+Started GET "/" for ::1 at 2023-10-15 20:49:50 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (1.7ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 32)
+  Rendered articles/_pagination.html.erb (Duration: 1.2ms | Allocations: 419)
+  Rendered articles/_about.html.erb (Duration: 0.4ms | Allocations: 129)
+  Rendered articles/_archives.html.erb (Duration: 0.5ms | Allocations: 168)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.7ms | Allocations: 132)
+  Rendered articles/_right_side.html.erb (Duration: 3.2ms | Allocations: 948)
+  Rendered articles/index.html.erb within layouts/application (Duration: 9.3ms | Allocations: 3377)
+  Rendered layouts/_topnavbar.html.erb (Duration: 1.0ms | Allocations: 345)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 257)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 123)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | Allocations: 6044)
+Completed 200 OK in 137ms (Views: 20.3ms | ActiveRecord: 5.0ms | Allocations: 51687)
+
+
+Started GET "/articles/new" for ::1 at 2023-10-15 20:49:51 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 57.4ms | Allocations: 33874)
+  Rendered articles/new.html.erb within layouts/application (Duration: 59.0ms | Allocations: 34159)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 84)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 31)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 60.6ms | Allocations: 34931)
+Completed 200 OK in 82ms (Views: 57.0ms | ActiveRecord: 8.1ms | Allocations: 50548)
+
+
+Started POST "/articles" for ::1 at 2023-10-15 20:51:19 -0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"\nO Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\nO Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\nAntes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente.", "category_id"=>"40"}, "commit"=>"Criar Article"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mArticle Create (3.3ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Simplificando Formulários no Rails 7 com o Simple Form"], ["body", "\nO Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\nO Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\nAntes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente."], ["created_at", "2023-10-15 23:51:19.377349"], ["updated_at", "2023-10-15 23:51:19.377349"], ["category_id", 40]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+Redirected to 
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 5.3ms | Allocations: 10175)
+
+
+  
+ActionController::ActionControllerError (Cannot redirect to nil!):
+  
+app/controllers/articles_controller.rb:26:in `block (2 levels) in create'
+app/controllers/articles_controller.rb:24:in `create'
+Started GET "/articles/new" for ::1 at 2023-10-15 20:51:41 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 23.7ms | Allocations: 7488)
+  Rendered articles/new.html.erb within layouts/application (Duration: 24.2ms | Allocations: 7560)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.4ms | Allocations: 87)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 35)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 27.4ms | Allocations: 8390)
+Completed 200 OK in 43ms (Views: 25.1ms | ActiveRecord: 8.3ms | Allocations: 13790)
+
+
+Started POST "/articles" for ::1 at 2023-10-15 20:51:59 -0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"O Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\nO Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\nAntes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente.", "category_id"=>""}, "commit"=>"Criar Article"}
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 16.0ms | Allocations: 4110)
+  Rendered articles/new.html.erb within layouts/application (Duration: 16.4ms | Allocations: 4167)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.4ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.2ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 20.3ms | Allocations: 4876)
+Completed 422 Unprocessable Entity in 26ms (Views: 21.4ms | ActiveRecord: 0.4ms | Allocations: 7007)
+
+
+Started POST "/articles" for ::1 at 2023-10-15 20:52:02 -0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"O Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\nO Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\nAntes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente.", "category_id"=>"40"}, "commit"=>"Criar Article"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mArticle Create (1.0ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Simplificando Formulários no Rails 7 com o Simple Form"], ["body", "O Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\nO Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\nAntes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente."], ["created_at", "2023-10-15 23:52:02.919850"], ["updated_at", "2023-10-15 23:52:02.919850"], ["category_id", 40]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+Redirected to 
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 5.2ms | Allocations: 4644)
+
+
+  
+ActionController::ActionControllerError (Cannot redirect to nil!):
+  
+app/controllers/articles_controller.rb:26:in `block (2 levels) in create'
+app/controllers/articles_controller.rb:24:in `create'
+Started POST "/__web_console/repl_sessions/ba41290701802df2e77a8c39b451e84c/trace" for ::1 at 2023-10-15 20:52:14 -0300
+Started GET "/articles/new" for ::1 at 2023-10-15 20:52:14 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 10.9ms | Allocations: 3536)
+  Rendered articles/new.html.erb within layouts/application (Duration: 11.3ms | Allocations: 3593)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 4308)
+Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.3ms | Allocations: 4620)
+
+
+Started POST "/articles" for ::1 at 2023-10-15 20:52:26 -0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"\n\nO Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\nO Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\nAntes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente.", "category_id"=>"40"}, "commit"=>"Criar Article"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mArticle Create (1.2ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Simplificando Formulários no Rails 7 com o Simple Form"], ["body", "\n\nO Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\nO Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\nAntes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente."], ["created_at", "2023-10-15 23:52:26.517012"], ["updated_at", "2023-10-15 23:52:26.517012"], ["category_id", 40]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+Redirected to 
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 5.8ms | Allocations: 3687)
+
+
+  
+ActionController::ActionControllerError (Cannot redirect to nil!):
+  
+app/controllers/articles_controller.rb:26:in `block (2 levels) in create'
+app/controllers/articles_controller.rb:24:in `create'
+Started GET "/articles/new" for ::1 at 2023-10-15 20:52:48 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 19.5ms | Allocations: 7495)
+  Rendered articles/new.html.erb within layouts/application (Duration: 19.8ms | Allocations: 7567)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 87)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 22.2ms | Allocations: 8397)
+Completed 200 OK in 37ms (Views: 19.9ms | ActiveRecord: 7.7ms | Allocations: 13824)
+
+
+Started POST "/articles" for ::1 at 2023-10-15 20:53:02 -0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"Simplificando Formulários no Rails 7 com o Simple Form", "category_id"=>"40"}, "commit"=>"Criar Article"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mArticle Create (0.6ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Simplificando Formulários no Rails 7 com o Simple Form"], ["body", "Simplificando Formulários no Rails 7 com o Simple Form"], ["created_at", "2023-10-15 23:53:02.534680"], ["updated_at", "2023-10-15 23:53:02.534680"], ["category_id", 40]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 19ms (ActiveRecord: 4.6ms | Allocations: 5073)
+
+
+Started GET "/articles" for ::1 at 2023-10-15 20:53:02 -0300
+Processing by ArticlesController#index as TURBO_STREAM
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 1.5ms | Allocations: 322)
+  Rendered articles/_medium_featured.html.erb (Duration: 1.4ms | Allocations: 321)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.3ms | Allocations: 83)
+  [1m[36mArticle Load (1.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(30,29,28)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of articles/_article.html.erb [1 times] (Duration: 2.5ms | Allocations: 1065)
+  Rendered articles/_pagination.html.erb (Duration: 0.6ms | Allocations: 232)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered articles/_right_side.html.erb (Duration: 0.6ms | Allocations: 186)
+  Rendered articles/index.html.erb within layouts/application (Duration: 12.4ms | Allocations: 3544)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 32)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 13.8ms | Allocations: 4260)
+Completed 200 OK in 17ms (Views: 13.3ms | ActiveRecord: 1.4ms | Allocations: 5781)
+
+
+Started GET "/articles/29" for ::1 at 2023-10-15 20:53:07 -0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"29"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 4.5ms | Allocations: 462)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | Allocations: 1558)
+Completed 200 OK in 13ms (Views: 8.4ms | ActiveRecord: 0.4ms | Allocations: 2999)
+
+
+Started DELETE "/articles/29" for ::1 at 2023-10-15 20:53:10 -0300
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"29"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mArticle Destroy (3.5ms)[0m  [1m[31mDELETE FROM "articles" WHERE "articles"."id" = $1[0m  [["id", 29]]
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+Redirected to http://localhost:3000/articles.29
+Completed 302 Found in 14ms (ActiveRecord: 5.2ms | Allocations: 2570)
+
+
+Started GET "/articles.29" for ::1 at 2023-10-15 20:53:10 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.4ms | Allocations: 83)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.5ms | Allocations: 83)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.4ms | Allocations: 83)
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(30,28,27)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 17)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 41)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 1.0ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 1444)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.2ms | Allocations: 29)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 2550)
+Completed 200 OK in 17ms (Views: 10.7ms | ActiveRecord: 1.0ms | Allocations: 3723)
+
+
+Started GET "/articles.29" for ::1 at 2023-10-15 20:53:10 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.4ms | Allocations: 83)
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(30,28,27)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.7ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 1439)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 2550)
+Completed 200 OK in 12ms (Views: 8.6ms | ActiveRecord: 0.7ms | Allocations: 3719)
+
+
+Started GET "/articles/30" for ::1 at 2023-10-15 20:53:12 -0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"30"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 194)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 1292)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.2ms | Allocations: 2063)
+
+
+Started DELETE "/articles/30" for ::1 at 2023-10-15 20:53:14 -0300
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"30"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mArticle Destroy (0.3ms)[0m  [1m[31mDELETE FROM "articles" WHERE "articles"."id" = $1[0m  [["id", 30]]
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+Redirected to http://localhost:3000/articles.30
+Completed 302 Found in 9ms (ActiveRecord: 4.1ms | Allocations: 2481)
+
+
+Started GET "/articles.30" for ::1 at 2023-10-15 20:53:14 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.4ms | Allocations: 83)
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(28,27)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.3ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1308)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 29)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 2418)
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 0.6ms | Allocations: 3574)
+
+
+Started GET "/articles.30" for ::1 at 2023-10-15 20:53:14 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.3ms | Allocations: 83)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.3ms | Allocations: 83)
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(28,27)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.4ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1308)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | Allocations: 2397)
+Completed 200 OK in 9ms (Views: 5.8ms | ActiveRecord: 0.7ms | Allocations: 3553)
+
+
+Started GET "/articles/27" for ::1 at 2023-10-15 20:53:16 -0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 195)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 1279)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.2ms | Allocations: 2049)
+
+
+Started DELETE "/articles/27" for ::1 at 2023-10-15 20:53:19 -0300
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"27"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mArticle Destroy (0.3ms)[0m  [1m[31mDELETE FROM "articles" WHERE "articles"."id" = $1[0m  [["id", 27]]
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+Redirected to http://localhost:3000/articles.27
+Completed 302 Found in 13ms (ActiveRecord: 4.5ms | Allocations: 2457)
+
+
+Started GET "/articles.27" for ::1 at 2023-10-15 20:53:19 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.3ms | Allocations: 83)
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(28)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.6ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1177)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 29)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 2291)
+Completed 200 OK in 13ms (Views: 8.4ms | ActiveRecord: 0.7ms | Allocations: 3434)
+
+
+Started GET "/articles.27" for ::1 at 2023-10-15 20:53:19 -0300
+Processing by ArticlesController#index as */*
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.2ms | Allocations: 83)
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(28)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.3ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1177)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.0ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 2282)
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 0.5ms | Allocations: 3425)
+
+
+Started GET "/articles/28" for ::1 at 2023-10-15 20:53:22 -0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 195)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.4ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | Allocations: 1289)
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 0.2ms | Allocations: 2059)
+
+
+Started GET "/articles/28/edit" for ::1 at 2023-10-15 20:53:27 -0300
+Processing by ArticlesController#edit as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 13.0ms | Allocations: 3721)
+  Rendered articles/edit.html.erb within layouts/application (Duration: 14.2ms | Allocations: 3900)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 16.9ms | Allocations: 4607)
+Completed 200 OK in 21ms (Views: 17.4ms | ActiveRecord: 0.7ms | Allocations: 5431)
+
+
+Started PATCH "/articles/28" for ::1 at 2023-10-15 20:53:45 -0300
+Processing by ArticlesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"O Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\n         O Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\n             Antes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente.", "category_id"=>"40"}, "commit"=>"Atualizar Article", "id"=>"28"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  [1m[36mCACHE Article Load (0.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:38:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+  [1m[36mArticle Update (0.9ms)[0m  [1m[33mUPDATE "articles" SET "body" = $1, "updated_at" = $2 WHERE "articles"."id" = $3[0m  [["body", "O Ruby on Rails é uma estrutura de desenvolvimento web que se destaca pela sua capacidade de acelerar o desenvolvimento de aplicativos da web, permitindo que os desenvolvedores se concentrem em resolver problemas de negócios em vez de lidar com tarefas repetitivas. Um desses aspectos repetitivos é a criação e manipulação de formulários. Felizmente, o Simple Form é uma gema que simplifica drasticamente o processo de criação e gerenciamento de formulários no Rails. Neste artigo, vamos explorar como usar o Simple Form em um projeto Rails 7 e destacar algumas de suas características mais usadas atualmente.\n\n## O que é o Simple Form?\n\n         O Simple Form é uma gema Ruby que fornece uma maneira elegante e concisa de criar formulários no Ruby on Rails. Ele é construído sobre o framework de formulários padrão do Rails, o que o torna compatível com todos os recursos e funcionalidades que você já conhece. No entanto, ele adiciona uma camada de abstração que simplifica muito o código necessário para criar e personalizar formulários.\n\n## Configurando o Simple Form\n\n             Antes de começar a usar o Simple Form, você precisa adicioná-lo ao seu projeto Rails 7. Isso pode ser feito editando o seu arquivo `Gemfile` e incluindo a seguinte linha:\n\n```ruby\ngem 'simple_form'\n```\n\nEm seguida, você deve rodar o seguinte comando para instalar a gema:\n\n```bash\nbundle install\n```\n\nDepois de instalar a gema, você pode gerar os arquivos de configuração padrão com o comando:\n\n```bash\nrails generate simple_form:install\n```\n\nIsso criará um arquivo `config/initializers/simple_form.rb` que você pode personalizar de acordo com suas necessidades.\n\n## Usando o Simple Form em seu Projeto\n\nAgora que o Simple Form está configurado em seu projeto, você pode começar a usá-lo em seus formulários. Vamos dar uma olhada em como criar um simples formulário de cadastro de usuário.\n\nSuponha que você tenha um modelo `User` com os campos `name`, `email` e `password`. Você pode criar um formulário para este modelo da seguinte maneira:\n\n```erb\n<%= simple_form_for @user do |f| %>\n  <%= f.input :name %>\n  <%= f.input :email %>\n  <%= f.input :password %>\n  <%= f.button :submit %>\n<% end %>\n```\n\nNeste exemplo, `simple_form_for` é um método que cria o formulário e aceita o objeto `@user` que será criado ou editado. O método `f.input` é usado para criar campos de entrada para os atributos do modelo. O Simple Form é inteligente o suficiente para inferir automaticamente o tipo de campo com base no tipo de atributo, mas você também pode especificar o tipo explicitamente, se desejar.\n\n## Características mais usadas do Simple Form\n\nAqui estão algumas das características mais usadas do Simple Form:\n\n### Customização de Labels\n\nVocê pode personalizar os rótulos dos campos facilmente usando o seguinte formato:\n\n```erb\n<%= f.input :email, label: 'Endereço de Email' %>\n```\n\n### Campos Requeridos\n\nDefinir um campo como obrigatório é simples:\n\n```erb\n<%= f.input :name, required: true %>\n```\n\n### Seleção de Coleções\n\nPara criar um campo de seleção a partir de uma coleção, você pode usar:\n\n```erb\n<%= f.input :role, collection: ['Admin', 'User', 'Guest'] %>\n```\n\n### Estilo de Bootstrap\n\nSe você estiver usando o framework Bootstrap, o Simple Form se integra perfeitamente:\n\n```erb\n<%= simple_form_for @user, wrapper: :inline_form do |f| %>\n  <%= f.input :name, label: 'Nome' %>\n  <%= f.input :email, label: 'Email' %>\n  <%= f.button :submit, class: 'btn btn-primary' %>\n<% end %>\n```\n\n## Conclusão\n\nO Simple Form é uma ferramenta valiosa para simplificar a criação e personalização de formulários no Ruby on Rails. Ele oferece uma sintaxe concisa e elegante que permite economizar tempo e reduzir a repetição de código. Com a capacidade de personalizar rótulos, campos obrigatórios, seleções de coleção e integração com frameworks populares como o Bootstrap, o Simple Form é uma escolha sólida para qualquer projeto Rails. Experimente o Simple Form em seu próximo projeto e veja como ele pode simplificar a criação de formulários de maneira eficiente."], ["updated_at", "2023-10-15 23:53:45.755651"], ["id", 28]]
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+Redirected to http://localhost:3000/articles/28
+Completed 302 Found in 23ms (ActiveRecord: 5.5ms | Allocations: 4401)
+
+
+Started GET "/articles/28" for ::1 at 2023-10-15 20:53:45 -0300
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"28"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 196)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 29)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 1324)
+Completed 200 OK in 10ms (Views: 5.8ms | ActiveRecord: 0.3ms | Allocations: 2098)
+
+
+Started GET "/" for ::1 at 2023-10-15 20:53:53 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.6ms | Allocations: 83)
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(28)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.2ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.8ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1177)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.7ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 9.3ms | Allocations: 2268)
+Completed 200 OK in 15ms (Views: 10.0ms | ActiveRecord: 0.7ms | Allocations: 3411)
+
+
+Started GET "/" for ::1 at 2023-10-15 20:54:18 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.6ms | Allocations: 173)
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(28)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 19)
+  Rendered articles/_pagination.html.erb (Duration: 0.7ms | Allocations: 241)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered articles/_right_side.html.erb (Duration: 0.7ms | Allocations: 186)
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1621)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 89)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 2903)
+Completed 200 OK in 25ms (Views: 9.1ms | ActiveRecord: 4.2ms | Allocations: 9504)
+
+
+Started GET "/articles/28" for ::1 at 2023-10-15 20:54:20 -0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"28"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.5ms | Allocations: 227)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 1325)
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.3ms | Allocations: 2758)
+
+
+Started DELETE "/articles/28" for ::1 at 2023-10-15 20:54:22 -0300
+Processing by ArticlesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"28"}
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mArticle Destroy (0.5ms)[0m  [1m[31mDELETE FROM "articles" WHERE "articles"."id" = $1[0m  [["id", 28]]
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:51:in `destroy'
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 10ms (ActiveRecord: 2.4ms | Allocations: 2548)
+
+
+Started GET "/articles" for ::1 at 2023-10-15 20:54:22 -0300
+Processing by ArticlesController#index as TURBO_STREAM
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 1.2ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 1061)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.2ms | Allocations: 30)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 2170)
+Completed 200 OK in 12ms (Views: 8.5ms | ActiveRecord: 0.6ms | Allocations: 3294)
+
+
+Started GET "/articles/new" for ::1 at 2023-10-15 20:54:23 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 14.9ms | Allocations: 7393)
+  Rendered articles/new.html.erb within layouts/application (Duration: 15.2ms | Allocations: 7456)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 31)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | Allocations: 8215)
+Completed 200 OK in 18ms (Views: 14.4ms | ActiveRecord: 3.0ms | Allocations: 8558)
+
+
+Started POST "/articles" for ::1 at 2023-10-15 20:54:27 -0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"Simplificando Formulários no Rails 7 com o Simple Form", "category_id"=>"40"}, "commit"=>"Criar Article"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mArticle Create (0.5ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Simplificando Formulários no Rails 7 com o Simple Form"], ["body", "Simplificando Formulários no Rails 7 com o Simple Form"], ["created_at", "2023-10-15 23:54:27.671266"], ["updated_at", "2023-10-15 23:54:27.671266"], ["category_id", 40]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 20ms (ActiveRecord: 4.7ms | Allocations: 4996)
+
+
+Started GET "/articles" for ::1 at 2023-10-15 20:54:27 -0300
+Processing by ArticlesController#index as TURBO_STREAM
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.5ms | Allocations: 95)
+  [1m[36mArticle Load (0.7ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(31)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 19)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 40)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.4ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 1207)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 2327)
+Completed 200 OK in 12ms (Views: 6.8ms | ActiveRecord: 1.0ms | Allocations: 3511)
+
+
+Started GET "/articles/31" for ::1 at 2023-10-15 20:54:29 -0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"31"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  Rendered articles/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 195)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1305)
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 2084)
+
+
+Started GET "/articles/31/edit" for ::1 at 2023-10-15 20:54:30 -0300
+Processing by ArticlesController#edit as HTML
+  Parameters: {"id"=>"31"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 12.6ms | Allocations: 3638)
+  Rendered articles/edit.html.erb within layouts/application (Duration: 13.0ms | Allocations: 3697)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 15.3ms | Allocations: 4404)
+Completed 200 OK in 19ms (Views: 15.7ms | ActiveRecord: 0.8ms | Allocations: 5174)
+
+
+Started PATCH "/articles/31" for ::1 at 2023-10-15 20:54:32 -0300
+Processing by ArticlesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Simplificando Formulários no Rails 7 com o Simple Form", "body"=>"Simplificando Formulários no Rails 7 com o Simple Form ", "category_id"=>"40"}, "commit"=>"Atualizar Article", "id"=>"31"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:66:in `set_article'
+  [1m[36mCACHE Article Load (0.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:38:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+  [1m[36mArticle Update (0.4ms)[0m  [1m[33mUPDATE "articles" SET "body" = $1, "updated_at" = $2 WHERE "articles"."id" = $3[0m  [["body", "Simplificando Formulários no Rails 7 com o Simple Form "], ["updated_at", "2023-10-15 23:54:32.381896"], ["id", 31]]
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:40:in `block in update'
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 20ms (ActiveRecord: 4.8ms | Allocations: 4221)
+
+
+Started GET "/articles" for ::1 at 2023-10-15 20:54:32 -0300
+Processing by ArticlesController#index as TURBO_STREAM
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.3ms | Allocations: 83)
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(31)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.6ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1180)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.2ms | Allocations: 29)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | Allocations: 2304)
+Completed 200 OK in 12ms (Views: 8.3ms | ActiveRecord: 0.5ms | Allocations: 3453)
+
+
+Started GET "/" for ::1 at 2023-10-15 20:55:12 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.3ms | Allocations: 83)
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(31)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.8ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1177)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2276)
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 3417)
+
+
+Started GET "/articles/new" for ::1 at 2023-10-15 20:55:14 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 8.1ms | Allocations: 3542)
+  Rendered articles/new.html.erb within layouts/application (Duration: 8.4ms | Allocations: 3599)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 4314)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.4ms | Allocations: 4628)
+
+
+Started GET "/" for ::1 at 2023-10-15 20:56:00 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.5ms | Allocations: 83)
+  [1m[36mArticle Load (0.6ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(31)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.2ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.9ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1177)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 2266)
+Completed 200 OK in 13ms (Views: 9.1ms | ActiveRecord: 0.9ms | Allocations: 3409)
+
+
+Started GET "/articles/new" for ::1 at 2023-10-15 20:56:10 -0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/articles/_form.html.erb:8
+  Rendered articles/_form.html.erb (Duration: 12.5ms | Allocations: 3552)
+  Rendered articles/new.html.erb within layouts/application (Duration: 12.8ms | Allocations: 3609)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | Allocations: 4324)
+Completed 200 OK in 16ms (Views: 15.4ms | ActiveRecord: 0.5ms | Allocations: 4637)
+
+
+Started POST "/articles" for ::1 at 2023-10-15 20:57:22 -0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"Desbravando a Gem Kaminari no Rails 7: Paginação Simples e Poderosa", "body"=>"\n\nA paginação é uma parte essencial de qualquer aplicação web que lida com grandes conjuntos de dados. O Ruby on Rails é uma estrutura altamente flexível e poderosa, mas a paginação é um aspecto que geralmente é tratado por meio de gems de terceiros. Uma dessas gems notáveis é o Kaminari, uma escolha popular para lidar com a paginação em aplicativos Rails. Neste artigo, exploraremos o que é o Kaminari, como configurá-lo e usá-lo em um projeto Ruby on Rails 7.\n\n## O Que é o Kaminari?\n\nO Kaminari é uma gem Ruby que oferece uma solução elegante e fácil de usar para a paginação em aplicativos Ruby on Rails. Ele se destaca por sua simplicidade de uso e sua capacidade de ser integrado perfeitamente aos seus modelos e views sem esforço.\n\n## Configuração do Kaminari\n\nAntes de começarmos a usar o Kaminari em um projeto Ruby on Rails 7, precisamos adicioná-lo ao nosso Gemfile. Você pode fazer isso da seguinte maneira:\n\n```ruby\ngem 'kaminari'\n```\n\nEm seguida, execute o comando `bundle install` para instalar a gem. Após a instalação, você pode gerar arquivos de configuração executando:\n\n```bash\nrails generate kaminari:config\n```\n\nEste comando irá criar um arquivo chamado `kaminari_config.rb` em seu diretório `config/initializers`. Você pode personalizar este arquivo para ajustar as configurações do Kaminari de acordo com as necessidades do seu projeto.\n\n## Utilizando o Kaminari em seu Modelo\n\nPara habilitar a paginação em um modelo Rails, você pode usar o método `paginate` fornecido pelo Kaminari. Por exemplo, suponha que você tenha um modelo `Post` que deseja paginar. Você pode fazer o seguinte:\n\n```ruby\nclass PostsController < ApplicationController\n  def index\n    @posts = Post.page(params[:page]).per(10)\n  end\nend\n```\n\nNeste exemplo, `page` é usado para especificar a página atual, e `per` é usado para definir quantos itens por página você deseja exibir. No caso acima, estamos exibindo 10 posts por página.\n\n## Exibindo a Paginação em suas Views\n\nO Kaminari torna extremamente fácil a exibição da navegação da página em suas views. Você pode usar o método `paginate` em suas views para gerar links de página. Por exemplo:\n\n```erb\n<%= paginate @posts %>\n```\n\nEste código irá gerar automaticamente links de página para navegar entre os diferentes conjuntos de registros. O Kaminari também permite personalizar a aparência dos links de página e muitas outras opções de personalização.\n\n## Personalização Avançada\n\nO Kaminari oferece muitas opções de personalização avançada. Você pode alterar a aparência dos links de página, definir o número máximo de links exibidos, personalizar os textos dos links e muito mais. Verifique a documentação oficial do Kaminari para obter detalhes sobre todas as opções de personalização disponíveis.\n\n## Conclusão\n\nO Kaminari é uma ferramenta poderosa e flexível para lidar com a paginação em aplicativos Ruby on Rails 7. Sua simplicidade de uso e amplas opções de personalização o tornam uma escolha popular entre os desenvolvedores Rails. Com o Kaminari, você pode adicionar facilmente funcionalidade de paginação aos seus aplicativos e melhorar a experiência do usuário ao lidar com grandes conjuntos de dados. Portanto, se você está construindo um aplicativo Rails 7 que precisa de paginação, o Kaminari é uma excelente opção a considerar.", "category_id"=>"40"}, "commit"=>"Criar Article"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mArticle Create (0.9ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "created_at", "updated_at", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Desbravando a Gem Kaminari no Rails 7: Paginação Simples e Poderosa"], ["body", "\n\nA paginação é uma parte essencial de qualquer aplicação web que lida com grandes conjuntos de dados. O Ruby on Rails é uma estrutura altamente flexível e poderosa, mas a paginação é um aspecto que geralmente é tratado por meio de gems de terceiros. Uma dessas gems notáveis é o Kaminari, uma escolha popular para lidar com a paginação em aplicativos Rails. Neste artigo, exploraremos o que é o Kaminari, como configurá-lo e usá-lo em um projeto Ruby on Rails 7.\n\n## O Que é o Kaminari?\n\nO Kaminari é uma gem Ruby que oferece uma solução elegante e fácil de usar para a paginação em aplicativos Ruby on Rails. Ele se destaca por sua simplicidade de uso e sua capacidade de ser integrado perfeitamente aos seus modelos e views sem esforço.\n\n## Configuração do Kaminari\n\nAntes de começarmos a usar o Kaminari em um projeto Ruby on Rails 7, precisamos adicioná-lo ao nosso Gemfile. Você pode fazer isso da seguinte maneira:\n\n```ruby\ngem 'kaminari'\n```\n\nEm seguida, execute o comando `bundle install` para instalar a gem. Após a instalação, você pode gerar arquivos de configuração executando:\n\n```bash\nrails generate kaminari:config\n```\n\nEste comando irá criar um arquivo chamado `kaminari_config.rb` em seu diretório `config/initializers`. Você pode personalizar este arquivo para ajustar as configurações do Kaminari de acordo com as necessidades do seu projeto.\n\n## Utilizando o Kaminari em seu Modelo\n\nPara habilitar a paginação em um modelo Rails, você pode usar o método `paginate` fornecido pelo Kaminari. Por exemplo, suponha que você tenha um modelo `Post` que deseja paginar. Você pode fazer o seguinte:\n\n```ruby\nclass PostsController < ApplicationController\n  def index\n    @posts = Post.page(params[:page]).per(10)\n  end\nend\n```\n\nNeste exemplo, `page` é usado para especificar a página atual, e `per` é usado para definir quantos itens por página você deseja exibir. No caso acima, estamos exibindo 10 posts por página.\n\n## Exibindo a Paginação em suas Views\n\nO Kaminari torna extremamente fácil a exibição da navegação da página em suas views. Você pode usar o método `paginate` em suas views para gerar links de página. Por exemplo:\n\n```erb\n<%= paginate @posts %>\n```\n\nEste código irá gerar automaticamente links de página para navegar entre os diferentes conjuntos de registros. O Kaminari também permite personalizar a aparência dos links de página e muitas outras opções de personalização.\n\n## Personalização Avançada\n\nO Kaminari oferece muitas opções de personalização avançada. Você pode alterar a aparência dos links de página, definir o número máximo de links exibidos, personalizar os textos dos links e muito mais. Verifique a documentação oficial do Kaminari para obter detalhes sobre todas as opções de personalização disponíveis.\n\n## Conclusão\n\nO Kaminari é uma ferramenta poderosa e flexível para lidar com a paginação em aplicativos Ruby on Rails 7. Sua simplicidade de uso e amplas opções de personalização o tornam uma escolha popular entre os desenvolvedores Rails. Com o Kaminari, você pode adicionar facilmente funcionalidade de paginação aos seus aplicativos e melhorar a experiência do usuário ao lidar com grandes conjuntos de dados. Portanto, se você está construindo um aplicativo Rails 7 que precisa de paginação, o Kaminari é uma excelente opção a considerar."], ["created_at", "2023-10-15 23:57:22.447573"], ["updated_at", "2023-10-15 23:57:22.447573"], ["category_id", 40]]
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+  [1m[36mTRANSACTION (4.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:25:in `block in create'
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 12ms (ActiveRecord: 5.3ms | Allocations: 3314)
+
+
+Started GET "/articles" for ::1 at 2023-10-15 20:57:22 -0300
+Processing by ArticlesController#index as TURBO_STREAM
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered articles/_medium_featured.html.erb (Duration: 0.3ms | Allocations: 86)
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(32,31)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 15)
+  Rendered articles/_pagination.html.erb (Duration: 0.1ms | Allocations: 39)
+  Rendered articles/_about.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_archives.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered articles/_right_side.html.erb (Duration: 0.4ms | Allocations: 182)
+  Rendered articles/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1314)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 29)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 2432)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 0.6ms | Allocations: 3593)
+
+
+Started GET "/articles" for ::1 at 2023-10-15 20:58:35 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:6:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 0.8ms | Allocations: 327)
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/views/articles/_medium_featured.html.erb:5
+  Rendered articles/_medium_featured.html.erb (Duration: 2.6ms | Allocations: 1133)
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(32,31)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 19)
+  Rendered articles/_pagination.html.erb (Duration: 0.6ms | Allocations: 198)
+  Rendered articles/_about.html.erb (Duration: 0.2ms | Allocations: 128)
+  Rendered articles/_archives.html.erb (Duration: 0.3ms | Allocations: 167)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered articles/_right_side.html.erb (Duration: 1.9ms | Allocations: 930)
+  Rendered articles/index.html.erb within layouts/application (Duration: 10.6ms | Allocations: 4108)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.8ms | Allocations: 338)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 238)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 122)
+  Rendered layout layouts/application.html.erb (Duration: 15.7ms | Allocations: 6430)
+Completed 200 OK in 20ms (Views: 16.5ms | ActiveRecord: 0.8ms | Allocations: 8849)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 20:58:43 -0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1512)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 92)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 36)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | Allocations: 2803)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 3953)
+
+
+Started GET "/categories/40/edit" for ::1 at 2023-10-15 20:58:45 -0300
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"40"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:64:in `set_category'
+  Rendering layout layouts/application.html.erb
+  Rendering categories/edit.html.erb within layouts/application
+  Rendered categories/_form.html.erb (Duration: 3.2ms | Allocations: 2187)
+  Rendered categories/edit.html.erb within layouts/application (Duration: 4.3ms | Allocations: 2509)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | Allocations: 3216)
+Completed 200 OK in 8ms (Views: 6.1ms | ActiveRecord: 0.1ms | Allocations: 4714)
+
+
+Started PATCH "/categories/40" for ::1 at 2023-10-15 20:58:48 -0300
+Processing by CategoriesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "category"=>{"name"=>"Backend"}, "commit"=>"Atualizar Category", "id"=>"40"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:64:in `set_category'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:40:in `block in update'
+  [1m[36mCategory Update (0.6ms)[0m  [1m[33mUPDATE "categories" SET "name" = $1, "updated_at" = $2 WHERE "categories"."id" = $3[0m  [["name", "Backend"], ["updated_at", "2023-10-15 23:58:48.029228"], ["id", 40]]
+  ↳ app/controllers/categories_controller.rb:40:in `block in update'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/categories_controller.rb:40:in `block in update'
+Redirected to http://localhost:3000/categories
+Completed 302 Found in 12ms (ActiveRecord: 4.8ms | Allocations: 3193)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 20:58:48 -0300
+Processing by CategoriesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 954)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 2123)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.4ms | Allocations: 2543)
+
+
+Started DELETE "/categories/40" for ::1 at 2023-10-15 20:59:06 -0300
+Processing by CategoriesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"40"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:64:in `set_category'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mCategory Destroy (3.2ms)[0m  [1m[31mDELETE FROM "categories" WHERE "categories"."id" = $1[0m  [["id", 40]]
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 3.8ms | Allocations: 3311)
+
+
+  
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERRO:  atualização ou exclusão em tabela "categories" viola restrição de chave estrangeira "fk_rails_af09d53ead" em "articles"
+DETAIL:  Chave (id)=(40) ainda é referenciada pela tabela "articles".
+):
+  
+app/controllers/categories_controller.rb:52:in `destroy'
+Started GET "/categories/40/edit" for ::1 at 2023-10-15 21:01:04 -0300
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"40"}
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:64:in `set_category'
+  Rendering layout layouts/application.html.erb
+  Rendering categories/edit.html.erb within layouts/application
+  Rendered categories/_form.html.erb (Duration: 2.3ms | Allocations: 2038)
+  Rendered categories/edit.html.erb within layouts/application (Duration: 2.6ms | Allocations: 2161)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 87)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 2972)
+Completed 200 OK in 16ms (Views: 5.9ms | ActiveRecord: 2.9ms | Allocations: 8795)
+
+
+Started GET "/categories/40/edit" for ::1 at 2023-10-15 21:01:04 -0300
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"40"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:64:in `set_category'
+  Rendering layout layouts/application.html.erb
+  Rendering categories/edit.html.erb within layouts/application
+  Rendered categories/_form.html.erb (Duration: 2.1ms | Allocations: 1552)
+  Rendered categories/edit.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1649)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.1ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 2356)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.2ms | Allocations: 3199)
+
+
+Started PATCH "/categories/40" for ::1 at 2023-10-15 21:01:06 -0300
+Processing by CategoriesController#update as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "category"=>{"name"=>"Backend"}, "commit"=>"Atualizar Category", "id"=>"40"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:64:in `set_category'
+Redirected to http://localhost:3000/categories
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 1556)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:01:06 -0300
+Processing by CategoriesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1009)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2142)
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.3ms | Allocations: 2526)
+
+
+Started DELETE "/categories/40" for ::1 at 2023-10-15 21:01:08 -0300
+Processing by CategoriesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"40"}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:64:in `set_category'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mArticle Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "articles" WHERE "articles"."category_id" = $1 LIMIT $2[0m  [["category_id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+Redirected to http://localhost:3000/categories
+Completed 302 Found in 33ms (ActiveRecord: 2.2ms | Allocations: 10028)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:01:08 -0300
+Processing by CategoriesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 998)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 84)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2201)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.3ms | Allocations: 2616)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:01:40 -0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 954)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 2044)
+Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 0.6ms | Allocations: 2400)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:01:41 -0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 954)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 2060)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.4ms | Allocations: 2416)
+
+
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT $2[0m  [["name", "backend"], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT $2[0m  [["name", "Backend"], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."category_id" = $1[0m  [["category_id", 40]]
+Started DELETE "/categories/40" for ::1 at 2023-10-15 21:08:00 -0300
+Processing by CategoriesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"40"}
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:66:in `set_category'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mArticle Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "articles" WHERE "articles"."category_id" = $1 LIMIT $2[0m  [["category_id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+Redirected to http://localhost:3000/categories
+Completed 302 Found in 33ms (ActiveRecord: 8.9ms | Allocations: 14447)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:08:00 -0300
+Processing by CategoriesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1140)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 92)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 43)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 2451)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.5ms | Allocations: 3333)
+
+
+Started DELETE "/categories/41" for ::1 at 2023-10-15 21:08:20 -0300
+Processing by CategoriesController#destroy as TURBO_STREAM
+  Parameters: {"id"=>"41"}
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 41], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:66:in `set_category'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mArticle Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "articles" WHERE "articles"."category_id" = $1 LIMIT $2[0m  [["category_id", 41], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mCategory Destroy (0.9ms)[0m  [1m[31mDELETE FROM "categories" WHERE "categories"."id" = $1[0m  [["id", 41]]
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/categories_controller.rb:52:in `destroy'
+Redirected to http://localhost:3000/categories
+Completed 302 Found in 14ms (ActiveRecord: 3.2ms | Allocations: 3432)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:08:20 -0300
+Processing by CategoriesController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 782)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.2ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 29)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 1906)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 2289)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:08:58 -0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1255)
+  Rendered layouts/_topnavbar.html.erb (Duration: 2.1ms | Allocations: 341)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.9ms | Allocations: 236)
+  Rendered layouts/_footer.html.erb (Duration: 0.6ms | Allocations: 122)
+  Rendered layout layouts/application.html.erb (Duration: 16.3ms | Allocations: 3595)
+Completed 200 OK in 22ms (Views: 19.2ms | ActiveRecord: 0.7ms | Allocations: 5243)
+
+
+Started GET "/categories/40/edit" for ::1 at 2023-10-15 21:09:11 -0300
+Processing by CategoriesController#edit as HTML
+  Parameters: {"id"=>"40"}
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:66:in `set_category'
+  Rendering layout layouts/application.html.erb
+  Rendering categories/edit.html.erb within layouts/application
+  Rendered categories/_form.html.erb (Duration: 5.9ms | Allocations: 2119)
+  Rendered categories/edit.html.erb within layouts/application (Duration: 7.8ms | Allocations: 2437)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.5ms | Allocations: 82)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 3144)
+Completed 200 OK in 16ms (Views: 12.0ms | ActiveRecord: 0.5ms | Allocations: 4010)
+
+
+Started GET "/categories" for ::1 at 2023-10-15 21:09:12 -0300
+Processing by CategoriesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering categories/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/categories/index.html.erb:14
+  Rendered categories/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 734)
+  Rendered layouts/_topnavbar.html.erb (Duration: 0.3ms | Allocations: 83)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 24)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 8)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 1828)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.4ms | Allocations: 2198)
+
+
