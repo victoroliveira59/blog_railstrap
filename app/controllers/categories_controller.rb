@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destroy]
+  before_action :set_category, only: %i[edit update destroy]
 
   # GET /categories or /categories.json
   def index
@@ -9,7 +9,6 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1 or /categories/1.json
-  def show; end
 
   # GET /categories/new
   def new
@@ -49,11 +48,13 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
-    @category.destroy
-
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+    if @category.destroy
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to categories_url, alert: @category.errors.messages[:base][0]
     end
   end
 
