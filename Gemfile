@@ -80,3 +80,7 @@ end
 gem "simple_form", "~> 5.3"
 
 gem "kaminari", "~> 1.2"
+
+gem "devise", "~> 4.9"
+
+gem "letter_opener", "~> 1.8"
