@@ -6,7 +6,7 @@
       </strong>
       <h3 class="mb-0"><%= article.title %></h3>
 
-      <div class="mb-1 text-body-secondary"><%= creation_date(article.created_at) %></div>
+      <div class="mb-1 text-body-secondary"><%= creation_date(article.created_at) %></div> by <%= article.user.email %>
 
       <p
         class="card-text mb-auto"><%= truncate(article.body, lenght: 100)%>
