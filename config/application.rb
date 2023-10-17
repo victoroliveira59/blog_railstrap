@@ -13,6 +13,8 @@ module Blogstrap
 
     config.i18n.default_locale = 'pt-BR'
     config.time_zone = 'Brasilia'
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 
 
     # Configuration for the application, engines, and railties goes here.
