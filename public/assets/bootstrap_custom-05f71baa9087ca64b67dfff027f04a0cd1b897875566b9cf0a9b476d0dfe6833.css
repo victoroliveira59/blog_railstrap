@@ -1,0 +1,52 @@
+/* line 1, app/assets/stylesheets/bootstrap_custom.scss */
+.blog-header-logo {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 2.25rem;
+}
+
+/* line 6, app/assets/stylesheets/bootstrap_custom.scss */
+.blog-header-logo:hover {
+  text-decoration: lawngreen;
+}
+
+/* line 10, app/assets/stylesheets/bootstrap_custom.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+/* line 14, app/assets/stylesheets/bootstrap_custom.scss */
+.flex-auto {
+  flex: 0 0 auto;
+}
+
+/* line 18, app/assets/stylesheets/bootstrap_custom.scss */
+.h-250 {
+  height: 250px;
+}
+
+@media (min-width: 768px) {
+  /* line 20, app/assets/stylesheets/bootstrap_custom.scss */
+  .h-md-250 {
+    height: 250px;
+  }
+}
+
+/* Pagination */
+/* line 24, app/assets/stylesheets/bootstrap_custom.scss */
+.blog-pagination {
+  margin-bottom: 4rem;
+}
+
+/*
+ * Blog posts
+ */
+/* line 31, app/assets/stylesheets/bootstrap_custom.scss */
+.blog-post {
+  margin-bottom: 4rem;
+}
+
+/* line 34, app/assets/stylesheets/bootstrap_custom.scss */
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #727272;
+}

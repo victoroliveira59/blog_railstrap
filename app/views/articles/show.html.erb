@@ -1,0 +1,18 @@
+<article class="blog-post">
+  <h2 class="display-5 link-body-emphasis mb-1"><%= @article.title %></h2>
+  <p class="blog-post-meta"><%= creation_date(@article.created_at) %>by <%= @article.user.email %>
+
+  <p><%= @article.body %></p>
+
+  <div class="btn">
+    <%= link_to "Edit", edit_article_path(@article), class: "btn btn-primary " %>
+    <div class="btn-group">
+      <%= link_to 'Delete', @article, data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?" }, class: 'btn btn-danger'%>
+    </div>
+    <%= link_to 'Back', root_path, class: 'btn btn-success' %>
+  </div>
+</article>
+
+
