@@ -41324,13 +41324,13 @@ Migrating to AddAdminToUsers (20231017092725)
   [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
 Started GET "/suppliers" for ::1 at 2023-11-12 08:16:24 -0300
   [1m[36mActiveRecord::SchemaMigration Pluck (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
-  
+
 ActionController::RoutingError (No route matches [GET] "/suppliers"):
-  
+
 Started GET "/suppliers" for ::1 at 2023-11-12 08:16:24 -0300
-  
+
 ActionController::RoutingError (No route matches [GET] "/suppliers"):
-  
+
 Started GET "/" for ::1 at 2023-11-12 08:16:29 -0300
 Processing by ArticlesController#index as HTML
   [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
