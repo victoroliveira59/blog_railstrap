@@ -41322,3 +41322,36 @@ Migrating to AddAdminToUsers (20231017092725)
   [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6893361540670263855)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/suppliers" for ::1 at 2023-11-12 08:16:24 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/suppliers"):
+  
+Started GET "/suppliers" for ::1 at 2023-11-12 08:16:24 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/suppliers"):
+  
+Started GET "/" for ::1 at 2023-11-12 08:16:29 -0300
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (2.0ms)[0m  [1m[34mSELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" DESC LIMIT $1[0m  [["LIMIT", 3]]
+  ↳ app/controllers/articles_controller.rb:7:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/_longer_featured.html.erb (Duration: 1.3ms | Allocations: 423)
+  [1m[36mArticle Load (0.6ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE (id NOT IN(34)) ORDER BY "articles"."created_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/articles/index.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 27)
+  Rendered articles/_pagination.html.erb (Duration: 1.2ms | Allocations: 410)
+  Rendered articles/_about.html.erb (Duration: 0.5ms | Allocations: 129)
+  Rendered articles/_archives.html.erb (Duration: 0.9ms | Allocations: 168)
+  Rendered articles/_elsewhere.html.erb (Duration: 0.4ms | Allocations: 132)
+  Rendered articles/_right_side.html.erb (Duration: 4.2ms | Allocations: 948)
+  Rendered articles/index.html.erb within layouts/application (Duration: 12.5ms | Allocations: 3351)
+  Rendered layouts/_account_links.html.erb (Duration: 3.0ms | Allocations: 586)
+  Rendered layouts/_topnavbar.html.erb (Duration: 4.7ms | Allocations: 1052)
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 253)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 123)
+  Rendered layout layouts/application.html.erb (Duration: 23.0ms | Allocations: 6798)
+Completed 200 OK in 69ms (Views: 25.3ms | ActiveRecord: 11.2ms | Allocations: 33678)
+
+
