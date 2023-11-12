@@ -86,5 +86,3 @@ gem "devise", "~> 4.9"
 
 
 gem "devise-i18n", "~> 1.12"
-
-gem "pundit", "~> 2.3"
